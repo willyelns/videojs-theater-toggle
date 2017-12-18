@@ -50,8 +50,11 @@ class TheaterToggle extends Plugin {
     };
   }
 
+  /** Triggered by click on button
+  * @return {boolean} - isTheater() response
+  */
   theaterMode() {
-    {theaterState: this.isTheater()}
+    return this.isTheater();
   }
 
   /** Check if the Toggle is active
