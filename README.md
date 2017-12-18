@@ -22,6 +22,9 @@ A plugin to enable Theater Mode in VideoJS 6.4+
 npm install --save videojs-theater-toggle
 ```
 
+[![NPM](https://nodei.co/npm/videojs-theater-toggle.png?compact=true)](https://npmjs.org/package/videojs-theater-toggle)
+
+
 ## Usage
 
 To include videojs-theater-toggle on your website or web application, use any of the following methods.
@@ -39,13 +42,13 @@ This is the simplest case. Get the script in whatever way you prefer and include
 
   player.theaterToggle();
 
-  player.on("timeupdate",function(){
-		if(player.theaterToggle().isTheater()){
-          //Turn on Theater Mode
-        }else {
-          //Turn off Theater Mode
-        }
-  	});
+  player.on("theaterMode",function(){
+    if(player.theaterToggle().isTheater()){
+      //The 'Theater' is enabled
+    }else {
+      //The 'Theater' is disabled
+    }
+  });
 </script>
 ```
 
@@ -64,6 +67,15 @@ require('videojs-theater-toggle');
 var player = videojs('my-video');
 
 player.theaterToggle();
+
+player.on("theaterMode",function(){
+  if(player.theaterToggle().isTheater()){
+    //The 'Theater' is enabled
+  }else {
+    //The 'Theater' is disabled
+  }
+});
+
 ```
 
 ### RequireJS/AMD
@@ -75,6 +87,15 @@ require(['video.js', 'videojs-theater-toggle'], function(videojs) {
   var player = videojs('my-video');
 
   player.theaterToggle();
+
+  player.on("theaterMode",function(){
+    if(player.theaterToggle().isTheater()){
+      //The 'Theater' is enabled
+    }else {
+      //The 'Theater' is disabled
+    }
+  });
+
 });
 ```
 

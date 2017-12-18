@@ -41,13 +41,17 @@ class TheaterToggle extends Plugin {
     player.addClass('vjs-theater-toggle');
 
     document.getElementsByClassName(buttonName)[0].onclick = function() {
-      player.trigger('theaterMode', this.theaterMode);
       if (this.classList.contains('theater-toggled')) {
         this.classList.remove('theater-toggled');
       } else {
         this.classList.add('theater-toggled');
       }
+      player.trigger('theaterMode', this.theaterMode);
     };
+  }
+
+  theaterMode() {
+    {theaterState: this.isTheater()}
   }
 
   /** Check if the Toggle is active
