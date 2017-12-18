@@ -1,50 +1,66 @@
+/* globals document */
 import videojs from 'video.js';
 
 const Plugin = videojs.getPlugin('plugin');
-const buttonName = "vjs-theater-container-button";
+const buttonName = 'vjs-theater-container-button';
 
+/** Class represents the TheaterToggle Plugin*/
 class TheaterToggle extends Plugin {
 
+  /**
+  * Create the plugin
+  * @param {Player} player - a player to active the plugin
+  * @param {JSON} options -  list of options to setting the plugin
+  */
   constructor(player, options) {
     super(player, options);
-    this.on(player,'timeupdate', this.isTheater);
-
-   	//Adding or removing when is fullscreen
+    this.on(player, 'timeupdate', this.isTheater);
+    // Adding or removing when is fullscreen
     player.on('fullscreenchange', (event) => {
-	    if (player.isFullscreen()) {
-	      document.getElementsByClassName(buttonName)[0].classList.add("vjs-hidden");
-	    } else {
-	      document.getElementsByClassName(buttonName)[0].classList.remove("vjs-hidden");
-	    }
-  	});
+      const buttonEl = document.getElementsByClassName(buttonName)[0];
 
-	let buttonElement = document.createElement("button");
-	buttonElement.className = buttonName;
+      if (player.isFullscreen()) {
+        buttonEl.classList.add('vjs-hidden');
+      } else {
+        buttonEl.classList.remove('vjs-hidden');
+      }
+    });
 
-	let iconElement = document.createElement("span");
-	iconElement.textContent = "Theater";
-	buttonElement.appendChild(iconElement);
+    const buttonElement = document.createElement('button');
 
-	player.controlBar.el().insertBefore(buttonElement, player.controlBar.fullscreenToggle.el());
-	player.controlBar.addChild(buttonElement);
-  	player.addClass('vjs-theater-toggle');
+    buttonElement.className = buttonName;
+    const iconElement = document.createElement('span');
 
-  	document.getElementsByClassName(buttonName)[0].onclick = function(){
-  		player.trigger('theaterMode', this.theaterMode);
-		if(this.classList.contains("theater-toggled")){
-			this.classList.remove("theater-toggled");
-		}else{
-			this.classList.add("theater-toggled");
-		}
-	}
+    iconElement.textContent = 'Theater';
+    buttonElement.appendChild(iconElement);
+
+    player.controlBar.el().insertBefore(
+      buttonElement, player.controlBar.fullscreenToggle.el()
+    );
+    player.controlBar.addChild(buttonElement);
+    player.addClass('vjs-theater-toggle');
+
+    document.getElementsByClassName(buttonName)[0].onclick = function() {
+      player.trigger('theaterMode', this.theaterMode);
+      if (this.classList.contains('theater-toggled')) {
+        this.classList.remove('theater-toggled');
+      } else {
+        this.classList.add('theater-toggled');
+      }
+    };
   }
 
-  isTheater(){
-  	return document.getElementsByClassName(buttonName)[0].classList.contains("theater-toggled");
+  /** Check if the Toggle is active
+  * @return {boolean} - the response
+  */
+  isTheater() {
+    const buttonDiv = document.getElementsByClassName(buttonName)[0];
+
+    return buttonDiv.classList.contains('theater-toggled');
   }
 
 }
 
 videojs.registerPlugin('theaterToggle', TheaterToggle);
 
-export default theaterToggle;
+export default TheaterToggle;

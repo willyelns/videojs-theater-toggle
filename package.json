@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "npm-run-all -p build:*",
+    "build": "npm-run-all -p build:* && npm run css",
     "build:js": "npm-run-all build:js:rollup-modules build:js:rollup-umd build:js:bannerize build:js:uglify",
     "build:js:bannerize": "bannerize dist/videojs-theater-toggle.js --banner=scripts/banner.ejs",
     "build:js:rollup-modules": "rollup -c scripts/modules.rollup.config.js",
