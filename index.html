@@ -6,11 +6,6 @@
   <!-- <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@6.4.0/dist/video-js.min.css">
   <link rel="stylesheet" href="dist/videojs-theater-toggle.css">
-  <style>
-    .vjs-theater-container-button img {
-      width: 100px;
-    }
-  </style>
 </head>
 <body>
   <video id="videojs-theater-toggle-player" class="video-js vjs-default-skin" controls>
@@ -29,6 +24,9 @@
     (function(window, videojs) {
       var player = window.player = videojs('videojs-theater-toggle-player');
       player.theaterToggle();
+      player.on("theaterMode",function(){
+          
+      });
       player.on("timeupdate",function(){
         if(player.theaterToggle().isTheater()){
           player.fluid(true);
