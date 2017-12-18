@@ -1,4 +1,4 @@
-# videojs-theater-switch
+# videojs-theater-toggle
 
 A plugin to enable Theater Mode in VideoJS 6.4+
 
@@ -9,12 +9,12 @@ A plugin to enable Theater Mode in VideoJS 6.4+
 ## Installation
 
 ```sh
-npm install --save videojs-theater-switch
+npm install --save videojs-theater-toggle
 ```
 
 ## Usage
 
-To include videojs-theater-switch on your website or web application, use any of the following methods.
+To include videojs-theater-toggle on your website or web application, use any of the following methods.
 
 ### `<script>` Tag
 
@@ -22,17 +22,26 @@ This is the simplest case. Get the script in whatever way you prefer and include
 
 ```html
 <script src="//path/to/video.min.js"></script>
-<script src="//path/to/videojs-theater-switch.min.js"></script>
+<link rel="stylesheet" href="//path/to/videojs-theater-toggle.css">
+<script src="//path/to/videojs-theater-toggle.min.js"></script>
 <script>
   var player = videojs('my-video');
 
-  player.theaterSwitch();
+  player.theaterToggle();
+
+  player.on("timeupdate",function(){
+		if(player.theaterToggle().isTheater()){
+          //Turn on Theater Mode
+        }else {
+          //Turn off Theater Mode
+        }
+  	});
 </script>
 ```
 
 ### Browserify/CommonJS
 
-When using with Browserify, install videojs-theater-switch via npm and `require` the plugin as you would any other module.
+When using with Browserify, install videojs-theater-toggle via npm and `require` the plugin as you would any other module.
 
 ```js
 var videojs = require('video.js');
@@ -40,11 +49,11 @@ var videojs = require('video.js');
 // The actual plugin function is exported by this module, but it is also
 // attached to the `Player.prototype`; so, there is no need to assign it
 // to a variable.
-require('videojs-theater-switch');
+require('videojs-theater-toggle');
 
 var player = videojs('my-video');
 
-player.theaterSwitch();
+player.theaterToggle();
 ```
 
 ### RequireJS/AMD
@@ -52,10 +61,10 @@ player.theaterSwitch();
 When using with RequireJS (or another AMD library), get the script in whatever way you prefer and `require` the plugin as you normally would:
 
 ```js
-require(['video.js', 'videojs-theater-switch'], function(videojs) {
+require(['video.js', 'videojs-theater-toggle'], function(videojs) {
   var player = videojs('my-video');
 
-  player.theaterSwitch();
+  player.theaterToggle();
 });
 ```
 
