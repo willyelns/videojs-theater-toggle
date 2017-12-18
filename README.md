@@ -1,6 +1,6 @@
 # videojs-theater-switch
 
-Create a description
+A plugin to enable Theater Mode in VideoJS 6.4+
 
 ## Table of Contents
 
