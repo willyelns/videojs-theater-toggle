@@ -15,7 +15,7 @@ QUnit.test('the environment is sane', function(assert) {
   assert.strictEqual(typeof plugin, 'function', 'plugin is a function');
 });
 
-QUnit.module('videojs-theater-switch', {
+QUnit.module('videojs-theater-toggle', {
 
   beforeEach() {
 
@@ -43,7 +43,7 @@ QUnit.test('registers itself with video.js', function(assert) {
   assert.strictEqual(
     typeof Player.prototype.theaterSwitch,
     'function',
-    'videojs-theater-switch plugin was registered'
+    'videojs-theater-toggle plugin was registered'
   );
 
   this.player.theaterSwitch();
@@ -52,7 +52,7 @@ QUnit.test('registers itself with video.js', function(assert) {
   this.clock.tick(1);
 
   assert.ok(
-    this.player.hasClass('vjs-theater-switch'),
+    this.player.hasClass('vjs-theater-toggle'),
     'the plugin adds a class to the player'
   );
 });

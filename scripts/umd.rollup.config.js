@@ -10,10 +10,10 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  name: 'videojsTheaterSwitch',
+  name: 'videojsTheaterToggle',
   input: 'src/plugin.js',
   output: {
-    file: 'dist/videojs-theater-switch.js',
+    file: 'dist/videojs-theater-toggle.js',
     format: 'umd'
   },
   external: [

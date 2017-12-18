@@ -9,13 +9,13 @@ import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
 
 export default {
-  name: 'videojsTheaterSwitch',
+  name: 'videojsTheaterToggle',
   input: 'src/plugin.js',
   output: [{
-    file: 'dist/videojs-theater-switch.cjs.js',
+    file: 'dist/videojs-theater-toggle.cjs.js',
     format: 'cjs'
   }, {
-    file: 'dist/videojs-theater-switch.es.js',
+    file: 'dist/videojs-theater-toggle.es.js',
     format: 'es'
   }],
   external: [

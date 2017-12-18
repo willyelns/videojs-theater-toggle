@@ -10,7 +10,7 @@ import multiEntry from 'rollup-plugin-multi-entry';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  name: 'videojsTheaterSwitchTests',
+  name: 'videojsTheaterToggleTests',
   input: 'test/**/*.test.js',
   output: {
     file: 'test/dist/bundle.js',

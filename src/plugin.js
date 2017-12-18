@@ -46,3 +46,5 @@ class TheaterToggle extends Plugin {
 }
 
 videojs.registerPlugin('theaterToggle', TheaterToggle);
+
+export default theaterToggle;
