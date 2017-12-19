@@ -1,7 +1,7 @@
 {
   "name": "videojs-theater-toggle",
-  "version": "0.0.3",
-  "description": "A plugin to enable Theater Mode in VideoJS 6.4+",
+  "version": "0.0.4",
+  "description": "A plugin to enable Theater Mode and save the state using LocalStorage in VideoJS 6.4+",
   "main": "dist/videojs-theater-toggle.cjs.js",
   "module": "dist/videojs-theater-toggle.es.js",
   "generator-videojs-plugin": {

@@ -1,58 +1,60 @@
-/* globals document */
+/* globals document localStorage */
 import videojs from 'video.js';
 
 const Plugin = videojs.getPlugin('plugin');
 const buttonName = 'vjs-theater-container-button';
 
 const config = {
-	"saveTheaterState" : true,
-	"localItemName" : 'theaterVideoState'
-}
+  saveTheaterState: true,
+  localItemName: 'theaterVideoState'
+};
 
 /** Class represents the TheaterToggle Plugin*/
 class TheaterToggle extends Plugin {
 
   /**
-  * Create the plugin
-  * @param {Player} player - a player to active the plugin
-  * @param {JSON} options -  list of options to setting the plugin
-  */
+   * Create the plugin
+   * @param {Player} player - a player to active the plugin
+   * @param {JSON} options -  list of options to setting the plugin
+   */
   constructor(player, options) {
     super(player, options);
 
-    if (typeof(options) === "undefined") {
-  		options = config;
-  	} else {
-  		options.saveTheaterState = typeof(options.saveTheaterState) === "undefined" ? config.saveTheaterState : options.saveTheaterState;
-  		options.localItemName = typeof(options.localItemName) === "undefined" ? config.localItemName : options.localItemName;
-  	}
-  	console.log("OPTIONS: " + JSON.stringify(options));
+    if (typeof (options) === 'undefined') {
+      options = config;
+    } else {
+      options.saveTheaterState = typeof (options.saveTheaterState) === 'undefined' ? config.saveTheaterState : options.saveTheaterState;
+      options.localItemName = typeof (options.localItemName) === 'undefined' ? config.localItemName : options.localItemName;
+    }
     this.on(player, 'timeupdate', this.isTheater);
 
     const buttonElement = document.createElement('button');
 
     buttonElement.className = buttonName;
 
-    if(options.saveTheaterState) {
-	    if (typeof(Storage) !== "undefined") {
-	    	if (localStorage.getItem(options.localItemName) !== null) {
-	    		const storage = localStorage.getItem(options.localItemName);
-	    		if (storage === 'enabled') {
-	    			buttonElement.classList.add('theater-toggled');
-	    		}
-	    	}
-		} else {
-		    videojs.log('Sorry! No Web Storage support...');
-		}
-    } else { 
-    	if (localStorage.getItem(options.localItemName) !== null) {
-    		localStorage.removeItem(options.localItemName);
-    	}
+    if (options.saveTheaterState) {
+      if (typeof (Storage) !== 'undefined') {
+        if (localStorage.getItem(options.localItemName) !== null) {
+          const storage = localStorage.getItem(options.localItemName);
+
+          if (storage === 'enabled') {
+            buttonElement.classList.add('theater-toggled');
+          }
+        }
+      } else {
+        videojs.log('Sorry! No Web Storage support...');
+      }
+    } else {
+      const localStore = localStorage.getItem(options.localItemName);
+
+      if (localStore !== null) {
+        localStorage.removeItem(options.localItemName);
+      }
     }
 
-	player.on('ready', () => {
-		player.trigger('theaterMode', this.theaterMode);
-	});
+    player.on('ready', () => {
+      player.trigger('theaterMode', this.theaterMode);
+    });
 
     // Adding or removing when is fullscreen
     player.on('fullscreenchange', (event) => {
@@ -89,15 +91,15 @@ class TheaterToggle extends Plugin {
   }
 
   /** Triggered by click on button
-  * @return {boolean} - isTheater() response
-  */
+   * @return {boolean} - isTheater() response
+   */
   theaterMode() {
     return this.isTheater();
   }
 
   /** Check if the Toggle is active
-  * @return {boolean} - the response
-  */
+   * @return {boolean} - the response
+   */
   isTheater() {
     const buttonDiv = document.getElementsByClassName(buttonName)[0];
 
