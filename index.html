@@ -23,9 +23,9 @@
   <script>
     (function(window, videojs) {
       var player = window.player = videojs('videojs-theater-toggle-player');
-      player.theaterToggle();
-      player.on("theaterMode",function(){
-          
+      player.theaterToggle({
+        "saveTheaterState" : true,
+        "localItemName" : 'theaterVideoState'
       });
       player.on("theaterMode",function(){
         if(player.theaterToggle().isTheater()){

@@ -1,3 +1,6 @@
+.vjs-theater-container-button {
+	cursor: pointer;
+}
 .vjs-theater-container-button span {
     color: transparent;
     border: 2.3px solid white;
